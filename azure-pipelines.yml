@@ -1,0 +1,13 @@
+jobs:
+- job: Docker
+  pool:
+    vmImage: 'windows-2019'
+  timeoutInMinutes: 120
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+      architecture: 'x64'
+  - script: |
+      cd ci
+      docker build --tag conanio/msvc2019 .
